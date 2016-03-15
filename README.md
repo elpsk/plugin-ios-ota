@@ -23,7 +23,7 @@ OneSky+Swift.m
 ```
 
 
-Usage
+Inclusion
 ----------------
 
 Make a bridge and add the import for the new category:
@@ -32,6 +32,33 @@ Make a bridge and add the import for the new category:
 #import "OneSky+Swift.h"
 ```
 
+Security
+---------------
+
+For security reason you might not want to embed the API secret in the source code of your application, in this case you can skip the API secret by setting the string output API privacy to public, go to "Project settings > Privacy > String out API" on OneSky platform for more detail.
+
+``` objective-c
+OneSkyOTAPlugin.provideAPIKey(ONESKY_API_KEY, APISecret, ONESKY_PROJECT_ID);
+```
+
+Usage
+----------------
+
+Simply replace ```NSLocalizedString``` with ```OSLocalizedString```, the plugin will fallback to local .strings files if no translation of the string is found on OneSky.
+
+``` objective-c
+OSLocalizedStringSwift(key, comment)
+OSLocalizedStringFromTableSwift(key, tbl, comment)
+```
+
+Language
+----------------
+
+The default language the plugin uses is `-[[NSLocale preferredLanguages] firstObject]`. If your app implements custom language logic, you set the language with the new API:
+
+``` objective-c
+OneSkyOTAPlugin.setLanguage("pt-PT");
+```
 
 Support
 -------
